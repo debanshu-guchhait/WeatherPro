@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherPro</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Animated Background -->
+    <div id="background-animation"></div>
+
+    <div class="container">
+
+        <!-- Header -->
+        <header>
+
+            <div class="logo">
+                <i class="fa-solid fa-cloud-sun"></i>
+                <h1>WeatherPro</h1>
+            </div>
+
+            <div class="header-right">
+
+                <button id="themeBtn">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+
+            </div>
+
+        </header>
+
+        <!-- Search -->
+        <section class="search-section">
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="cityInput"
+                    placeholder="Search city...">
+
+                <button id="searchBtn">
+                    <i class="fas fa-search"></i>
+                </button>
+
+                <button id="locationBtn">
+                    <i class="fas fa-location-dot"></i>
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- Clock -->
+        <section class="clock-section">
+
+            <h2 id="date">Saturday, 1 August 2026</h2>
+
+            <h1 id="clock">12:00:00 PM</h1>
+
+        </section>
+
+        <!-- Main Weather -->
+
+        <section class="weather-card">
+
+            <div class="left">
+
+                <h1 id="temperature">--°C</h1>
+
+                <img
+                    id="weatherIcon"
+                    src=""
+                    alt="Weather">
+
+                <h2 id="weather">Clear</h2>
+
+                <h3 id="city">City Name</h3>
+
+            </div>
+
+            <div class="right">
+
+                <div class="info-card">
+                    <i class="fas fa-temperature-half"></i>
+                    <span>Feels Like</span>
+                    <h3 id="feelsLike">--°C</h3>
+                </div>
+
+                <div class="info-card">
+                    <i class="fas fa-temperature-arrow-down"></i>
+                    <span>Min Temp</span>
+                    <h3 id="minTemp">--°C</h3>
+                </div>
+
+                <div class="info-card">
+                    <i class="fas fa-temperature-arrow-up"></i>
+                    <span>Max Temp</span>
+                    <h3 id="maxTemp">--°C</h3>
+                </div>
+
+                <div class="info-card">
+                    <i class="fas fa-droplet"></i>
+                    <span>Humidity</span>
+                    <h3 id="humidity">--%</h3>
+                </div>
+
+                <div class="info-card">
+                    <i class="fas fa-wind"></i>
+                    <span>Wind</span>
+                    <h3 id="wind">-- km/h</h3>
+                </div>
+
+                <div class="info-card">
+                    <i class="fas fa-gauge"></i>
+                    <span>Pressure</span>
+                    <h3 id="pressure">-- hPa</h3>
+                </div>
+
+                <div class="info-card">
+                    <i class="fas fa-eye"></i>
+                    <span>Visibility</span>
+                    <h3 id="visibility">-- km</h3>
+                </div>
+
+                <div class="info-card">
+                    <i class="fas fa-sun"></i>
+                    <span>Sunrise</span>
+                    <h3 id="sunrise">--:--</h3>
+                </div>
+
+                <div class="info-card">
+                    <i class="fas fa-moon"></i>
+                    <span>Sunset</span>
+                    <h3 id="sunset">--:--</h3>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Hourly Forecast -->
+
+        <section class="hourly">
+
+            <h2>24-Hour Forecast</h2>
+
+            <div
+                class="hourly-container"
+                id="hourlyContainer">
+
+            </div>
+
+        </section>
+
+        <!-- 5 Day Forecast -->
+
+        <section class="forecast">
+
+            <h2>5-Day Forecast</h2>
+
+            <div
+                class="forecast-container"
+                id="forecastContainer">
+
+            </div>
+
+        </section>
+
+        <!-- Favorite Cities -->
+
+        <section class="favorites">
+
+            <div class="title">
+
+                <h2>Favorite Cities</h2>
+
+                <button id="addFavorite">
+                    <i class="fa-solid fa-heart"></i>
+                </button>
+
+            </div>
+
+            <div id="favoriteList">
+
+            </div>
+
+        </section>
+
+        <!-- Recent Searches -->
+
+        <section class="recent">
+
+            <h2>Recent Searches</h2>
+
+            <div id="recentList">
+
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- Loading -->
+
+    <div id="loading">
+
+        <div class="loader"></div>
+
+    </div>
+
+    <!-- Error -->
+
+    <div id="error">
+
+        <h2>City Not Found</h2>
+
+    </div>
+
+    <!-- Scripts -->
+
+    <script src="js/weather.js"></script>
+
+    <script src="js/forecast.js"></script>
+
+    <script src="js/location.js"></script>
+
+    <script src="js/theme.js"></script>
+
+    <script src="js/storage.js"></script>
+
+    <script src="js/clock.js"></script>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
