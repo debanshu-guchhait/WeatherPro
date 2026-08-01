@@ -6,9 +6,7 @@ A modern and responsive Weather Application built using **HTML, CSS, and JavaScr
 
 ## 📸 Preview
 
-<img width="100%" src="images/preview.png" alt="WeatherPro Preview">
-
-> *(Replace `preview.png` with a screenshot of your application.)*
+<img width="100%" src="image/preview.png" alt="WeatherPro Preview">
 
 ---
 
