@@ -142,20 +142,23 @@ Save the file and restart the application.
 
 ### Home
 
-<img src="images/home.png">
+<img src="images/menu.png">
 
 ### Hourly Forecast
 
-<img src="images/hourly.png">
+<img src="images/24 hours.png">
 
 ### 5-Day Forecast
 
-<img src="images/forecast.png">
+<img src="images/5 day forcast.png">
 
-### Dark Mode
+### FAVOURIT CITY
 
-<img src="images/dark.png">
+<img src="images/favourit.png">
 
+### SEARCH CITY
+
+<img src="images/search.png">
 ---
 
 ## 🌍 Browser Support
