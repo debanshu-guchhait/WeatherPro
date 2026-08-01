@@ -1,55 +1,67 @@
 # 🌦️ WeatherPro
 
-A modern and responsive Weather Application built using **HTML, CSS, and JavaScript**. WeatherPro provides real-time weather information, hourly forecasts, 5-day forecasts, automatic location detection, dark/light mode, favorite cities, and recent search history.
+<p align="center">
+  <img src="image/preview.png" alt="WeatherPro Preview" width="100%">
+</p>
+
+<p align="center">
+  <a href="https://debanshu-guchhait.github.io/WeatherPro/" target="_blank">
+    <img src="https://img.shields.io/badge/🚀%20Live%20Demo-Open%20WeatherPro-success?style=for-the-badge" alt="Live Demo">
+  </a>
+  &nbsp;
+  <a href="https://github.com/debanshu-guchhait/WeatherPro" target="_blank">
+    <img src="https://img.shields.io/badge/📂%20Source%20Code-GitHub-black?style=for-the-badge&logo=github" alt="GitHub">
+  </a>
+</p>
+
+<p align="center">
+A modern and responsive weather application built with <strong>HTML, CSS, and JavaScript</strong>. WeatherPro provides real-time weather updates, hourly and 5-day forecasts, automatic location detection, dark/light mode, favorite cities, and recent search history using the OpenWeatherMap API.
+</p>
 
 ---
 
-## 📸 Preview
-
-<img width="100%" src="image/preview.png" alt="WeatherPro Preview">
-
----
-
-## 🚀 Features
+# ✨ Features
 
 - 🔍 Search weather by city
-- 📍 Automatic location detection using Geolocation API
-- 🌡️ Current temperature
+- 📍 Automatic location detection
+- 🌡️ Real-time temperature
 - 🤗 Feels Like temperature
 - 📈 Maximum & Minimum temperature
 - 💧 Humidity
 - 🌬️ Wind Speed
 - 📊 Atmospheric Pressure
 - 👀 Visibility
-- 🌅 Sunrise & Sunset Time
+- 🌅 Sunrise & Sunset
 - ⏰ Live Digital Clock
 - 📅 Current Date
-- 📈 24-Hour Weather Forecast
-- 📅 5-Day Weather Forecast
+- 📈 24-Hour Forecast
+- 📅 5-Day Forecast
 - 🌙 Dark / Light Theme
 - ❤️ Favorite Cities
-- ⭐ Recent Search History
+- ⭐ Recent Searches
 - 💾 Local Storage Support
-- 📱 Fully Responsive Design
+- 📱 Responsive Design
 - ✨ Glassmorphism UI
-- 🎨 Animated Backgrounds
+- 🎨 Animated Weather Backgrounds
 
 ---
 
-## 🛠️ Technologies Used
+# 🛠️ Technologies Used
 
 - HTML5
 - CSS3
 - JavaScript (ES6)
 - OpenWeatherMap API
+- Geolocation API
+- Local Storage
 - Font Awesome
 - Google Fonts (Poppins)
 
 ---
 
-## 📂 Project Structure
+# 📂 Project Structure
 
-```
+```text
 WeatherPro/
 │
 ├── index.html
@@ -64,7 +76,13 @@ WeatherPro/
 │   ├── storage.js
 │   └── clock.js
 │
-├── images/
+├── image/
+│   ├── preview.png
+│   ├── menu.png
+│   ├── 24 hours.png
+│   ├── 5 day forcast.png
+│   ├── favourit.png
+│   └── search.png
 │
 ├── README.md
 └── LICENSE
@@ -72,25 +90,57 @@ WeatherPro/
 
 ---
 
-## ⚙️ Installation
+# 📸 Screenshots
 
-### 1. Clone the Repository
+## 🏠 Home
+
+<img src="image/menu.png" width="100%">
+
+---
+
+## ⏰ 24-Hour Forecast
+
+<img src="image/24 hours.png" width="100%">
+
+---
+
+## 📅 5-Day Forecast
+
+<img src="image/5 day forcast.png" width="100%">
+
+---
+
+## ❤️ Favorite Cities
+
+<img src="image/favourit.png" width="100%">
+
+---
+
+## 🔍 Search Weather
+
+<img src="image/search.png" width="100%">
+
+---
+
+# ⚙️ Installation
+
+### Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/WeatherPro.git
+git clone https://github.com/debanshu-guchhait/WeatherPro.git
 ```
 
-### 2. Open the Project
+### Open the Project
 
 ```bash
 cd WeatherPro
 ```
 
-### 3. Open in VS Code
+### Run the Project
 
-Install the **Live Server** extension.
+Install the **Live Server** extension in VS Code.
 
-Right-click on `index.html`
+Right-click **index.html**
 
 Select
 
@@ -100,25 +150,14 @@ Open with Live Server
 
 ---
 
-## 🔑 API Setup
+# 🔑 OpenWeather API Setup
 
-This project uses the **OpenWeatherMap API**.
+1. Visit https://openweathermap.org/
+2. Create a free account.
+3. Generate an API Key.
+4. Open:
 
-### Step 1
-
-Create a free account at:
-
-https://openweathermap.org/
-
-### Step 2
-
-Generate an API Key.
-
-### Step 3
-
-Open
-
-```
+```text
 js/weather.js
 ```
 
@@ -134,34 +173,11 @@ with
 const API_KEY = "YOUR_API_KEY_HERE";
 ```
 
-Save the file and restart the application.
+Save the file and run the project.
 
 ---
 
-## 📸 Screenshots
-
-### Home
-
-<img src="image/menu.png">
-
-### Hourly Forecast
-
-<img src="image/24 hours.png">
-
-### 5-Day Forecast
-
-<img src="image/5 day forcast.png">
-
-### FAVOURIT CITY
-
-<img src="image/favourit.png">
-
-### SEARCH CITY
-
-<img src="image/search.png">
----
-
-## 🌍 Browser Support
+# 🌍 Browser Support
 
 - ✅ Google Chrome
 - ✅ Microsoft Edge
@@ -171,26 +187,26 @@ Save the file and restart the application.
 
 ---
 
-## 📈 Future Improvements
+# 🚀 Future Improvements
 
 - Air Quality Index (AQI)
 - UV Index
-- Weather Maps
-- Multiple Language Support
 - Weather Alerts
+- Multiple Languages
+- Weather Maps
 - PWA Support
-- Offline Weather Cache
-- Temperature Unit Switch (°C / °F)
-- Animated Weather Effects
+- Offline Mode
+- °C / °F Toggle
+- Weather Animations
 
 ---
 
-## 🤝 Contributing
+# 🤝 Contributing
 
 Contributions are welcome!
 
 1. Fork this repository.
-2. Create a new branch.
+2. Create a feature branch.
 
 ```bash
 git checkout -b feature-name
@@ -212,30 +228,42 @@ git push origin feature-name
 
 ---
 
-## 📜 License
+# 📜 License
 
-This project is licensed under the MIT License.
-
----
-
-## 👨‍💻 Author
-
-**Debanshu Guchhait**
-
-- GitHub: https://github.com/debanshu-guchhait
+This project is licensed under the **MIT License**.
 
 ---
 
-## ⭐ Show Your Support
+# 👨‍💻 Author
 
-If you like this project,
+### **Debanshu Guchhait**
+
+<p align="center">
+
+<a href="https://github.com/debanshu-guchhait">
+<img src="https://img.shields.io/badge/GitHub-debanshu--guchhait-181717?style=for-the-badge&logo=github">
+</a>
+
+<a href="https://debanshu-guchhait.github.io/WeatherPro/">
+<img src="https://img.shields.io/badge/🌐%20Live%20Demo-WeatherPro-success?style=for-the-badge">
+</a>
+
+</p>
+
+---
+
+# ⭐ Support
+
+If you found this project helpful,
 
 ⭐ Star this repository
 
-🍴 Fork it
+🍴 Fork this repository
 
 📢 Share it with others
 
 ---
 
-Made with ❤️ using HTML, CSS & JavaScript.
+<p align="center">
+Made with ❤️ using HTML • CSS • JavaScript
+</p>
