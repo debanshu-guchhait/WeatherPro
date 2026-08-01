@@ -1,272 +1,1587 @@
-<!DOCTYPE html>
-<html lang="en">
+/* ===========================
+   Google Font
+=========================== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WeatherPro</title>
+/* ===========================
+   CSS Variables
+=========================== */
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+:root{
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    --primary:#4facfe;
+    --secondary:#00f2fe;
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-</head>
+    --glass:rgba(255,255,255,.15);
 
-<body>
+    --glass2:rgba(255,255,255,.08);
 
-    <!-- Animated Background -->
-    <div id="background-animation"></div>
+    --white:#ffffff;
 
-    <div class="container">
+    --text:#ffffff;
 
-        <!-- Header -->
-        <header>
+    --shadow:0 10px 30px rgba(0,0,0,.25);
 
-            <div class="logo">
-                <i class="fa-solid fa-cloud-sun"></i>
-                <h1>WeatherPro</h1>
-            </div>
+    --radius:20px;
 
-            <div class="header-right">
+}
 
-                <button id="themeBtn">
-                    <i class="fa-solid fa-moon"></i>
-                </button>
+/* Dark Theme */
 
-            </div>
+body.dark{
 
-        </header>
+    --primary:#0f172a;
+    --secondary:#1e293b;
 
-        <!-- Search -->
-        <section class="search-section">
+    --glass:rgba(0,0,0,.35);
 
-            <div class="search-box">
+    --glass2:rgba(255,255,255,.05);
 
-                <input
-                    type="text"
-                    id="cityInput"
-                    placeholder="Search city...">
+    --text:#ffffff;
 
-                <button id="searchBtn">
-                    <i class="fas fa-search"></i>
-                </button>
+}
 
-                <button id="locationBtn">
-                    <i class="fas fa-location-dot"></i>
-                </button>
+/* ===========================
+   Reset
+=========================== */
 
-            </div>
+*{
 
-        </section>
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 
-        <!-- Clock -->
-        <section class="clock-section">
+    font-family:'Poppins',sans-serif;
 
-            <h2 id="date">Saturday, 1 August 2026</h2>
+}
 
-            <h1 id="clock">12:00:00 PM</h1>
+html{
 
-        </section>
+    scroll-behavior:smooth;
 
-        <!-- Main Weather -->
+}
 
-        <section class="weather-card">
+body{
 
-            <div class="left">
+    min-height:100vh;
 
-                <h1 id="temperature">--°C</h1>
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
 
-                <img
-                    id="weatherIcon"
-                    src=""
-                    alt="Weather">
+    color:var(--text);
 
-                <h2 id="weather">Clear</h2>
+    overflow-x:hidden;
 
-                <h3 id="city">City Name</h3>
+    transition:.5s;
 
-            </div>
+}
 
-            <div class="right">
+/* ===========================
+   Animated Background
+=========================== */
 
-                <div class="info-card">
-                    <i class="fas fa-temperature-half"></i>
-                    <span>Feels Like</span>
-                    <h3 id="feelsLike">--°C</h3>
-                </div>
+#background-animation{
 
-                <div class="info-card">
-                    <i class="fas fa-temperature-arrow-down"></i>
-                    <span>Min Temp</span>
-                    <h3 id="minTemp">--°C</h3>
-                </div>
+    position:fixed;
 
-                <div class="info-card">
-                    <i class="fas fa-temperature-arrow-up"></i>
-                    <span>Max Temp</span>
-                    <h3 id="maxTemp">--°C</h3>
-                </div>
+    inset:0;
 
-                <div class="info-card">
-                    <i class="fas fa-droplet"></i>
-                    <span>Humidity</span>
-                    <h3 id="humidity">--%</h3>
-                </div>
+    z-index:-1;
 
-                <div class="info-card">
-                    <i class="fas fa-wind"></i>
-                    <span>Wind</span>
-                    <h3 id="wind">-- km/h</h3>
-                </div>
+    background:
 
-                <div class="info-card">
-                    <i class="fas fa-gauge"></i>
-                    <span>Pressure</span>
-                    <h3 id="pressure">-- hPa</h3>
-                </div>
+    radial-gradient(circle at 20% 30%,rgba(255,255,255,.25),transparent 30%),
 
-                <div class="info-card">
-                    <i class="fas fa-eye"></i>
-                    <span>Visibility</span>
-                    <h3 id="visibility">-- km</h3>
-                </div>
+    radial-gradient(circle at 80% 70%,rgba(255,255,255,.15),transparent 35%);
 
-                <div class="info-card">
-                    <i class="fas fa-sun"></i>
-                    <span>Sunrise</span>
-                    <h3 id="sunrise">--:--</h3>
-                </div>
+    animation:moveBackground 15s linear infinite;
 
-                <div class="info-card">
-                    <i class="fas fa-moon"></i>
-                    <span>Sunset</span>
-                    <h3 id="sunset">--:--</h3>
-                </div>
+}
 
-            </div>
+@keyframes moveBackground{
 
-        </section>
+0%{
 
-        <!-- Hourly Forecast -->
+transform:translateY(0);
 
-        <section class="hourly">
+}
 
-            <h2>24-Hour Forecast</h2>
+50%{
 
-            <div
-                class="hourly-container"
-                id="hourlyContainer">
+transform:translateY(-30px);
 
-            </div>
+}
 
-        </section>
+100%{
 
-        <!-- 5 Day Forecast -->
+transform:translateY(0);
 
-        <section class="forecast">
+}
 
-            <h2>5-Day Forecast</h2>
+}
 
-            <div
-                class="forecast-container"
-                id="forecastContainer">
+/* ===========================
+   Container
+=========================== */
 
-            </div>
+.container{
 
-        </section>
+    width:95%;
 
-        <!-- Favorite Cities -->
+    max-width:1400px;
 
-        <section class="favorites">
+    margin:30px auto;
 
-            <div class="title">
+    padding:30px;
 
-                <h2>Favorite Cities</h2>
+    border-radius:25px;
 
-                <button id="addFavorite">
-                    <i class="fa-solid fa-heart"></i>
-                </button>
+    backdrop-filter:blur(25px);
 
-            </div>
+    background:var(--glass);
 
-            <div id="favoriteList">
+    box-shadow:var(--shadow);
 
-            </div>
+}
 
-        </section>
+/* ===========================
+   Header
+=========================== */
 
-        <!-- Recent Searches -->
+header{
 
-        <section class="recent">
+display:flex;
 
-            <h2>Recent Searches</h2>
+justify-content:space-between;
 
-            <div id="recentList">
+align-items:center;
 
-            </div>
+margin-bottom:30px;
 
-        </section>
+}
 
-    </div>
+.logo{
 
-    <!-- Loading -->
+display:flex;
 
-    <div id="loading">
+align-items:center;
 
-        <div class="loader"></div>
+gap:15px;
 
-    </div>
+}
 
-    <!-- Error -->
+.logo i{
 
-    <div id="error">
+font-size:45px;
 
-        <h2>City Not Found</h2>
+color:gold;
 
-    </div>
+}
 
-    <!-- Scripts -->
+.logo h1{
 
-    <script src="js/weather.js"></script>
+font-size:35px;
 
-    <script src="js/forecast.js"></script>
+font-weight:700;
 
-    <script src="js/location.js"></script>
+letter-spacing:1px;
 
-    <script src="js/theme.js"></script>
+}
 
-    <script src="js/storage.js"></script>
+.header-right{
 
-    <script src="js/clock.js"></script>
+display:flex;
 
-    <script src="script.js"></script>
-    <!-- Footer -->
-    <footer class="footer">
+align-items:center;
 
-        <p>
-            © 2026 WeatherPro | Designed & Developed by
-            <strong>Debanshu Guchhait</strong>
-        </p>
+gap:15px;
 
-        <div class="footer-links">
+}
 
-            <a href="https://github.com/debanshu-guchhait" target="_blank">
-                <i class="fab fa-github"></i> GitHub
-            </a>
+#themeBtn{
 
-            <a href="https://debanshu-guchhait.github.io/WeatherPro/" target="_blank">
-                <i class="fas fa-globe"></i> Live Demo
-            </a>
+width:55px;
 
-        </div>
+height:55px;
 
-    </footer>
-</body>
+border:none;
 
-</html>
+border-radius:50%;
+
+cursor:pointer;
+
+font-size:22px;
+
+background:var(--glass2);
+
+color:white;
+
+transition:.3s;
+
+}
+
+#themeBtn:hover{
+
+transform:rotate(180deg);
+
+background:white;
+
+color:#222;
+
+}
+
+/* ===========================
+   Search Box
+=========================== */
+
+.search-section{
+
+margin-bottom:30px;
+
+}
+
+.search-box{
+
+display:flex;
+
+gap:15px;
+
+}
+
+.search-box input{
+
+flex:1;
+
+padding:18px;
+
+font-size:17px;
+
+border:none;
+
+outline:none;
+
+border-radius:15px;
+
+background:var(--glass2);
+
+color:white;
+
+}
+
+.search-box input::placeholder{
+
+color:#ddd;
+
+}
+
+.search-box button{
+
+width:60px;
+
+height:60px;
+
+border:none;
+
+cursor:pointer;
+
+border-radius:15px;
+
+background:white;
+
+font-size:20px;
+
+transition:.3s;
+
+}
+
+.search-box button:hover{
+
+transform:translateY(-5px);
+
+}
+
+/* ===========================
+   Clock
+=========================== */
+
+.clock-section{
+
+text-align:center;
+
+margin-bottom:40px;
+
+}
+
+#date{
+
+font-weight:400;
+
+font-size:22px;
+
+margin-bottom:10px;
+
+}
+
+#clock{
+
+font-size:55px;
+
+font-weight:700;
+
+}
+
+/* ===========================
+   Main Weather Card
+=========================== */
+
+.weather-card{
+
+display:grid;
+
+grid-template-columns:350px 1fr;
+
+gap:30px;
+
+margin-bottom:40px;
+
+}
+
+.left{
+
+background:var(--glass2);
+
+border-radius:20px;
+
+padding:30px;
+
+text-align:center;
+
+}
+
+.left h1{
+
+font-size:80px;
+
+margin:20px 0;
+
+}
+
+.left img{
+
+width:160px;
+
+}
+
+.left h2{
+
+margin-top:20px;
+
+font-size:30px;
+
+}
+
+.left h3{
+
+margin-top:10px;
+
+font-weight:400;
+
+}
+
+.right{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:20px;
+
+}
+
+/* ===========================
+   Weather Info Cards
+=========================== */
+
+.info-card{
+
+background:var(--glass2);
+
+padding:20px;
+
+border-radius:20px;
+
+text-align:center;
+
+transition:.35s;
+
+}
+
+.info-card:hover{
+
+transform:translateY(-10px);
+
+box-shadow:0 15px 25px rgba(0,0,0,.2);
+
+}
+
+.info-card i{
+
+font-size:35px;
+
+margin-bottom:15px;
+
+color:gold;
+
+}
+
+.info-card span{
+
+display:block;
+
+font-size:16px;
+
+margin-bottom:10px;
+
+}
+
+.info-card h3{
+
+font-size:24px;
+
+font-weight:600;
+
+}
+
+/* ===========================
+   Section Titles
+=========================== */
+
+section h2{
+
+margin-bottom:20px;
+
+font-size:28px;
+
+font-weight:600;
+
+}
+/*========================================
+    Hourly Forecast
+========================================*/
+
+.hourly{
+
+    margin-top:40px;
+
+}
+
+.hourly-container{
+
+    display:flex;
+
+    gap:20px;
+
+    overflow-x:auto;
+
+    padding:15px 5px 20px;
+
+    scroll-behavior:smooth;
+
+}
+
+.hourly-container::-webkit-scrollbar{
+
+    height:8px;
+
+}
+
+.hourly-container::-webkit-scrollbar-thumb{
+
+    background:rgba(255,255,255,.4);
+
+    border-radius:10px;
+
+}
+
+.hour-card{
+
+    min-width:140px;
+
+    background:var(--glass2);
+
+    backdrop-filter:blur(20px);
+
+    border-radius:20px;
+
+    padding:20px;
+
+    text-align:center;
+
+    transition:.35s;
+
+    cursor:pointer;
+
+}
+
+.hour-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 15px 30px rgba(0,0,0,.2);
+
+}
+
+.hour-card h3{
+
+    font-size:18px;
+
+    margin-bottom:15px;
+
+}
+
+.hour-card img{
+
+    width:70px;
+
+}
+
+.hour-card h2{
+
+    font-size:28px;
+
+    margin:15px 0;
+
+}
+
+.hour-card p{
+
+    font-size:15px;
+
+}
+
+/*========================================
+        5 Day Forecast
+========================================*/
+
+.forecast{
+
+    margin-top:50px;
+
+}
+
+.forecast-container{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+
+    gap:25px;
+
+}
+
+.forecast-card{
+
+    background:var(--glass2);
+
+    padding:25px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    transition:.35s;
+
+}
+
+.forecast-card:hover{
+
+    transform:translateY(-12px);
+
+    box-shadow:0 20px 35px rgba(0,0,0,.25);
+
+}
+
+.forecast-card h3{
+
+    font-size:22px;
+
+    margin-bottom:15px;
+
+}
+
+.forecast-card img{
+
+    width:90px;
+
+}
+
+.forecast-card h2{
+
+    margin:15px 0;
+
+    font-size:30px;
+
+}
+
+.forecast-card p{
+
+    font-size:16px;
+
+}
+
+/*========================================
+        Favorites
+========================================*/
+
+.favorites{
+
+    margin-top:60px;
+
+}
+
+.title{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+#addFavorite{
+
+    width:55px;
+
+    height:55px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#ff4d6d;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:22px;
+
+    transition:.35s;
+
+}
+
+#addFavorite:hover{
+
+    transform:scale(1.1);
+
+    box-shadow:0 10px 25px rgba(255,77,109,.5);
+
+}
+
+#favoriteList{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+
+}
+
+.favorite-city{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    background:var(--glass2);
+
+    padding:15px 25px;
+
+    border-radius:40px;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+}
+
+.favorite-city:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.favorite-city i{
+
+    color:#ff4d6d;
+
+}
+
+/*========================================
+        Recent Searches
+========================================*/
+
+.recent{
+
+    margin-top:50px;
+
+}
+
+#recentList{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+
+}
+
+.recent-item{
+
+    background:var(--glass2);
+
+    padding:15px 25px;
+
+    border-radius:40px;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+}
+
+.recent-item:hover{
+
+    background:white;
+
+    color:#222;
+
+}
+
+/*========================================
+        Buttons
+========================================*/
+
+button{
+
+    transition:.35s;
+
+}
+
+button:active{
+
+    transform:scale(.95);
+
+}
+
+/*========================================
+        Loader
+========================================*/
+
+#loading{
+
+    position:fixed;
+
+    inset:0;
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:rgba(0,0,0,.45);
+
+    z-index:1000;
+
+}
+
+.loader{
+
+    width:80px;
+
+    height:80px;
+
+    border:8px solid rgba(255,255,255,.3);
+
+    border-top:8px solid white;
+
+    border-radius:50%;
+
+    animation:spin 1s linear infinite;
+
+}
+
+@keyframes spin{
+
+100%{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+/*========================================
+        Error Popup
+========================================*/
+
+#error{
+
+    position:fixed;
+
+    top:30px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    background:#ff3d3d;
+
+    color:white;
+
+    padding:20px 40px;
+
+    border-radius:15px;
+
+    display:none;
+
+    z-index:1001;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.3);
+
+}
+
+/*========================================
+        Card Animations
+========================================*/
+
+@keyframes fadeUp{
+
+from{
+
+opacity:0;
+
+transform:translateY(40px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+.weather-card,
+
+.hour-card,
+
+.forecast-card,
+
+.favorite-city,
+
+.recent-item{
+
+animation:fadeUp .8s ease;
+
+}
+
+/*========================================
+        Floating Animation
+========================================*/
+
+@keyframes floating{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-10px);
+
+}
+
+100%{
+
+transform:translateY(0);
+
+}
+
+}
+
+.left img{
+
+animation:floating 3s ease-in-out infinite;
+
+}
+
+/*========================================
+        Glow Animation
+========================================*/
+
+@keyframes glow{
+
+0%{
+
+box-shadow:0 0 10px rgba(255,255,255,.3);
+
+}
+
+50%{
+
+box-shadow:0 0 30px rgba(255,255,255,.7);
+
+}
+
+100%{
+
+box-shadow:0 0 10px rgba(255,255,255,.3);
+
+}
+
+}
+
+.search-box input:focus{
+
+animation:glow 1.2s infinite;
+
+}
+/*========================================
+        Scrollbar
+========================================*/
+
+::-webkit-scrollbar{
+
+    width:10px;
+    height:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:rgba(255,255,255,.08);
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:rgba(255,255,255,.4);
+
+    border-radius:10px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:white;
+
+}
+
+/*========================================
+        Weather Backgrounds
+========================================*/
+
+body.sunny{
+
+background:linear-gradient(135deg,#56ccf2,#f2c94c);
+
+}
+
+body.cloudy{
+
+background:linear-gradient(135deg,#667db6,#8e9eab);
+
+}
+
+body.rain{
+
+background:linear-gradient(135deg,#1f1c2c,#4a6fa5);
+
+}
+
+body.snow{
+
+background:linear-gradient(135deg,#83a4d4,#b6fbff);
+
+}
+
+body.thunder{
+
+background:linear-gradient(135deg,#232526,#414345);
+
+}
+
+body.mist{
+
+background:linear-gradient(135deg,#606c88,#3f4c6b);
+
+}
+
+body.night{
+
+background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+
+}
+
+/*========================================
+        Rain Animation
+========================================*/
+
+.rain-drop{
+
+position:fixed;
+
+width:2px;
+
+height:18px;
+
+background:rgba(255,255,255,.6);
+
+animation:rainFall linear infinite;
+
+pointer-events:none;
+
+}
+
+@keyframes rainFall{
+
+0%{
+
+transform:translateY(-100px);
+
+opacity:0;
+
+}
+
+20%{
+
+opacity:1;
+
+}
+
+100%{
+
+transform:translateY(110vh);
+
+opacity:0;
+
+}
+
+}
+
+/*========================================
+        Snow Animation
+========================================*/
+
+.snowflake{
+
+position:fixed;
+
+font-size:18px;
+
+color:white;
+
+animation:snowFall linear infinite;
+
+pointer-events:none;
+
+}
+
+@keyframes snowFall{
+
+0%{
+
+transform:translateY(-100px);
+
+}
+
+100%{
+
+transform:translateY(110vh) rotate(360deg);
+
+}
+
+}
+
+/*========================================
+        Floating Clouds
+========================================*/
+
+.cloud{
+
+position:absolute;
+
+width:180px;
+
+opacity:.25;
+
+animation:cloudMove 35s linear infinite;
+
+}
+
+@keyframes cloudMove{
+
+0%{
+
+left:-220px;
+
+}
+
+100%{
+
+left:120%;
+
+}
+
+}
+
+/*========================================
+        Lightning
+========================================*/
+
+.flash{
+
+animation:flash 5s infinite;
+
+}
+
+@keyframes flash{
+
+0%,90%,100%{
+
+opacity:1;
+
+}
+
+92%{
+
+opacity:.2;
+
+}
+
+94%{
+
+opacity:1;
+
+}
+
+96%{
+
+opacity:.4;
+
+}
+
+}
+
+/*========================================
+        Weather Icon
+========================================*/
+
+#weatherIcon{
+
+transition:.5s;
+
+}
+
+#weatherIcon:hover{
+
+transform:rotate(15deg) scale(1.1);
+
+}
+
+/*========================================
+        Search Box
+========================================*/
+
+.search-box input{
+
+transition:.35s;
+
+}
+
+.search-box input:focus{
+
+transform:scale(1.02);
+
+}
+
+/*========================================
+        Cards
+========================================*/
+
+.info-card,
+.hour-card,
+.forecast-card{
+
+cursor:pointer;
+
+}
+
+.info-card:hover i{
+
+transform:scale(1.25);
+
+transition:.35s;
+
+}
+
+/*========================================
+        Favorite Tags
+========================================*/
+
+.favorite-city{
+
+font-weight:500;
+
+}
+
+.favorite-city:hover{
+
+background:white;
+
+color:#222;
+
+}
+
+/*========================================
+        Recent Search Tags
+========================================*/
+
+.recent-item{
+
+font-weight:500;
+
+}
+
+/*========================================
+        Footer
+========================================*/
+
+footer{
+
+margin-top:60px;
+
+text-align:center;
+
+opacity:.8;
+
+font-size:15px;
+
+}
+
+/*========================================
+        Tablet
+========================================*/
+
+@media(max-width:1100px){
+
+.weather-card{
+
+grid-template-columns:1fr;
+
+}
+
+.right{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+.left{
+
+max-width:500px;
+
+margin:auto;
+
+}
+
+}
+
+/*========================================
+        Mobile
+========================================*/
+
+@media(max-width:768px){
+
+.container{
+
+padding:20px;
+
+}
+
+.logo h1{
+
+font-size:28px;
+
+}
+
+.logo i{
+
+font-size:35px;
+
+}
+
+.search-box{
+
+flex-wrap:wrap;
+
+}
+
+.search-box input{
+
+width:100%;
+
+}
+
+.search-box button{
+
+flex:1;
+
+}
+
+#clock{
+
+font-size:42px;
+
+}
+
+.left h1{
+
+font-size:60px;
+
+}
+
+.left img{
+
+width:120px;
+
+}
+
+.right{
+
+grid-template-columns:1fr;
+
+}
+
+.hour-card{
+
+min-width:120px;
+
+}
+
+.forecast-container{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+/*========================================
+        Small Mobile
+========================================*/
+
+@media(max-width:500px){
+
+.container{
+
+width:98%;
+
+padding:15px;
+
+}
+
+.logo{
+
+justify-content:center;
+
+}
+
+header{
+
+flex-direction:column;
+
+gap:20px;
+
+}
+
+.search-box{
+
+flex-direction:column;
+
+}
+
+.search-box button{
+
+width:100%;
+
+}
+
+#clock{
+
+font-size:32px;
+
+}
+
+#date{
+
+font-size:18px;
+
+}
+
+.left{
+
+padding:20px;
+
+}
+
+.left h1{
+
+font-size:48px;
+
+}
+
+.left h2{
+
+font-size:24px;
+
+}
+
+.info-card h3{
+
+font-size:20px;
+
+}
+
+.forecast-container{
+
+grid-template-columns:1fr;
+
+}
+
+#favoriteList,
+
+#recentList{
+
+justify-content:center;
+
+}
+
+}
+
+/*========================================
+        Smooth Fade
+========================================*/
+
+.fade{
+
+animation:fade .5s ease;
+
+}
+
+@keyframes fade{
+
+from{
+
+opacity:0;
+
+}
+
+to{
+
+opacity:1;
+
+}
+
+}
+
+/*========================================
+        Utility
+========================================*/
+
+.hidden{
+
+display:none !important;
+
+}
+
+.text-center{
+
+text-align:center;
+
+}
+
+.mt-20{
+
+margin-top:20px;
+
+}
+
+.mt-30{
+
+margin-top:30px;
+
+}
+
+.mt-40{
+
+margin-top:40px;
+
+}
+/* ==========================
+   Footer
+========================== */
+
+.footer{
+    margin-top:50px;
+    padding:20px;
+    text-align:center;
+    color:#fff;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(10px);
+    border-top:1px solid rgba(255,255,255,0.2);
+}
+
+.footer p{
+    margin-bottom:10px;
+    font-size:16px;
+}
+
+.footer strong{
+    color:#00d4ff;
+}
+
+.footer-links{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.footer-links a{
+    color:white;
+    text-decoration:none;
+    font-size:15px;
+    transition:.3s;
+}
+
+.footer-links a:hover{
+    color:#00d4ff;
+}
+
+.footer-links i{
+    margin-right:6px;
+}
